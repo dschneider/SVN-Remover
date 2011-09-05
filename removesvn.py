@@ -19,7 +19,6 @@ class SVNRemover(object):
             self.path = self.path[0:(len(self.path) - 1)]
         
         self.count = 0
-        pass
         
     def remove_svn(self, path):
         """Runs recursively through the given path and removes all .SVN folders"""
