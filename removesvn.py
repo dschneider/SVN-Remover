@@ -7,14 +7,22 @@ import shutil
 class SVNRemover(object):
     
     def __init__(self):
-        arguments = sys.argv
-        self.path = arguments[1]
+         
+        try:
+            self.path = sys.argv[1]
+        except IndexError:
+            print 'You need to specify a path'
+            exit()
+        
+        # Remove slash at the end of the path
+        if self.path[len(self.path) - 1] == '/':
+            self.path = self.path[0:(len(self.path) - 1)]
+        
         self.count = 0
         pass
         
     def remove_svn(self, path):
         """Runs recursively through the given path and removes all .SVN folders"""
-        # What if slash at the end of path? remove it
         if os.path.exists(path) and os.path.isdir(path):
             directory_listing = os.listdir(path)
             for folder in directory_listing:
