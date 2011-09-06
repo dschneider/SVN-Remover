@@ -7,11 +7,15 @@ import shutil
 class SVNRemover(object):
     
     def __init__(self):
-         
+        """Constructor"""
         try:
             self.path = sys.argv[1]
         except IndexError:
-            print 'You need to specify a path'
+            print 'The first argument needs to be the path. None is given.'
+            exit()
+            
+        if not os.path.exists(self.path):
+            print 'The given path does not exist'
             exit()
         
         # Remove slash at the end of the path
